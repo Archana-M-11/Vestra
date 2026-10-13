@@ -56,7 +56,7 @@ export default function Navbar({ cartCount = 0 }) {
   return (
     <>
       <header className={`vx-header ${scrolled ? "is-scrolled" : ""}`}>
-        <div className="container-fluid px-3 px-lg-5">
+        <div className="container-fluid">
           <div className="vx-card">
             {/* Top row */}
             <div className="row align-items-center g-0 vx-top">

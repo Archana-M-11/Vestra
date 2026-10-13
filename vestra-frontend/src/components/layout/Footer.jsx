@@ -90,24 +90,30 @@ export default function Footer() {
             </div>
 
             <div className="col-lg-6">
-              <form action={formAction} className="vf-form" noValidate>
-                <label htmlFor={emailId} className="visually-hidden">
-                  Email address
-                </label>
+                        
+            <form action={formAction} className="vf-form" noValidate>
+            <label htmlFor={emailId} className="visually-hidden">
+                Email address
+            </label>
+
+            <div className="vf-input-frame">
                 <input
-                  id={emailId}
-                  name="email"
-                  type="email"
-                  className="vf-input"
-                  placeholder="Your email address"
-                  autoComplete="email"
-                  aria-invalid={state && !state.ok ? "true" : undefined}
-                  required
+                id={emailId}
+                name="email"
+                type="email"
+                className="vf-input"
+                placeholder="Your email address"
+                autoComplete="email"
+                aria-invalid={state && !state.ok ? "true" : undefined}
+                required
                 />
-                <button type="submit" className="vf-submit" disabled={isPending}>
-                  {isPending ? "Subscribing…" : "Subscribe"}
-                </button>
-              </form>
+            </div>
+
+            <button type="submit" className="vf-submit" disabled={isPending}>
+                {isPending ? "Subscribing…" : "Subscribe"}
+            </button>
+            </form>
+
 
               <p
                 className={`vf-msg ${state ? (state.ok ? "is-ok" : "is-err") : ""}`}

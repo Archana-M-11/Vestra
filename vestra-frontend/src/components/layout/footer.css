@@ -46,12 +46,11 @@
 
 .vf-form {
   display: flex;
+  align-items: center;
   gap: 8px;
-  padding: 6px;
-  border-radius: 999px;
-  background: #fbf8f2;
-  border: 1px solid #d9d1bf;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 .vf-form:focus-within {
   border-color: var(--vf-gold);
@@ -169,6 +168,47 @@
   padding: 22px 0 28px;
   border-top: 1px solid var(--vf-line);
   color: var(--vf-dim);
+}
+
+/* search */
+.vf-input-frame {
+  flex: 1;
+  min-width: 0;
+  padding: 2px;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    90deg,
+    #0f766e,
+    #a8dcd3,
+    #e0f5ef,
+    #a8dcd3,
+    #0f766e
+  );
+  background-size: 200% 100%;
+  animation: vx-search-border 2.5s linear infinite;
+}
+
+
+.vf-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 16px 18px;
+  border: none;
+  border-radius: 999px;
+  background: #fbf8f2;
+  color: var(--vf-ink);
+  outline: none;
+  box-shadow: none;
+}
+.vf-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+@keyframes vx-search-border {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
 }
 
 /* ---------- Watermark ---------- */

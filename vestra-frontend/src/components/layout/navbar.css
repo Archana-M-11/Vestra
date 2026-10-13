@@ -1,4 +1,16 @@
-/* ---------- Header shell ---------- */
+:root {
+  --vx-bg: #f5f0e8;
+  --vx-bg-glass: rgba(245, 240, 232, 0.86);
+  --vx-ink: #23211e;
+  --vx-muted: #7a7468;
+  --vx-line: #dcd6c6;
+  --vx-accent: #8a5a44;
+  --vx-gold: #b8964f;
+  --vx-radius: 18px;
+  --vx-pad-x: clamp(16px, 4vw, 56px);
+}
+
+/* ---------- Header shell (full width) ---------- */
 .vx-header {
   position: sticky;
   top: 0;
@@ -6,30 +18,59 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  background: var(--vx-bg);
+  background: linear-gradient(180deg, #f8f4ec 0%, var(--vx-bg) 100%);
+  font-family: "Jost", "Segoe UI", system-ui, sans-serif;
+  color: var(--vx-ink);
+  transition: background 0.35s ease, box-shadow 0.35s ease;
 }
 
-.vx-card {
-  width: 100%;
-  margin: 0;
-  padding: 16px 0 0;
-  background: transparent;
-  border-radius: 0;
-}
-
-.vx-header.is-scrolled .vx-card {
-  box-shadow: 0 10px 30px rgba(60, 45, 30, 0.12);
-}
-
-.vx-top {
-  padding-bottom: 9px;
+/* fine gold hairline along the bottom edge */
+.vx-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(184, 150, 79, 0.55) 30%,
+    rgba(184, 150, 79, 0.55) 70%,
+    transparent
+  );
 }
 
 .vx-header > .container-fluid {
   width: 100%;
   max-width: none;
   margin: 0;
+  padding: 0;
 }
+
+.vx-card {
+  width: 100%;
+  margin: 0;
+  padding: 18px var(--vx-pad-x) 0;
+  background: transparent;
+  border-radius: 0;
+  transition: padding 0.35s ease;
+}
+
+/* compact + frosted glass once the page scrolls */
+.vx-header.is-scrolled {
+  background: var(--vx-bg-glass);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 10px 34px rgba(60, 45, 30, 0.1);
+}
+.vx-header.is-scrolled .vx-card { padding-top: 10px; }
+.vx-header.is-scrolled .vx-logo-main { font-size: clamp(1.2rem, 3.6vw, 1.55rem); }
+.vx-header.is-scrolled .vx-logo-sub { margin-top: 4px; }
+.vx-header.is-scrolled .vx-desktop-nav { padding: 11px 0 13px; }
+
+.vx-top { padding-bottom: 12px; transition: padding 0.35s ease; }
+.vx-header.is-scrolled .vx-top { padding-bottom: 8px; }
 
 /* ---------- Menu button ---------- */
 .vx-menu-btn {
@@ -41,7 +82,7 @@
   padding: 8px 4px;
   color: var(--vx-ink);
   font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -50,11 +91,11 @@
   display: inline-flex;
   flex-direction: column;
   gap: 5px;
-  width: 20px;
+  width: 22px;
 }
 .vx-burger i {
   display: block;
-  height: 2px;
+  height: 1.5px;
   background: currentColor;
   border-radius: 2px;
   transition: width 0.25s ease;
@@ -70,19 +111,37 @@
   line-height: 1;
   color: var(--vx-ink);
 }
+.vx-logo:hover { color: var(--vx-ink); }
+
 .vx-logo-main {
-  font-size: clamp(1.4rem, 4.5vw, 2rem);
-  font-weight: 300;
-  letter-spacing: 0.12em;
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  font-weight: 200;
+  letter-spacing: 0.22em;
+  padding-left: 0.22em; /* balances trailing letter-spacing */
+  transition: font-size 0.35s ease, letter-spacing 0.35s ease;
 }
+.vx-logo:hover .vx-logo-main { letter-spacing: 0.26em; }
+
 .vx-logo-sub {
-  margin-top: 6px;
-  font-size: 0.62rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--vx-muted);
-  padding-left: 0.38em; /* balances trailing letter-spacing */
+  padding-left: 0.42em;
+  transition: margin 0.35s ease;
+}
+/* small gold dashes either side of FASHION */
+.vx-logo-sub::before,
+.vx-logo-sub::after {
+  content: "";
+  width: 14px;
+  height: 1px;
+  background: var(--vx-gold);
 }
 
 /* ---------- Icon buttons ---------- */
@@ -91,69 +150,59 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border: 0;
   border-radius: 50%;
   background: none;
   color: var(--vx-ink);
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease;
 }
+.vx-icon-btn svg { transition: transform 0.25s ease; }
 .vx-icon-btn:hover {
-  background: rgba(35, 33, 30, 0.07);
-  color: var(--vx-ink);
+  background: rgba(138, 90, 68, 0.1);
+  color: var(--vx-accent);
 }
-.vx-icon-btn:active { transform: scale(0.94); }
+.vx-icon-btn:hover svg { transform: scale(1.08); }
+.vx-icon-btn:active { transform: scale(0.93); }
 
 .vx-badge {
   position: absolute;
-  top: 2px;
-  right: 0;
-  min-width: 17px;
-  height: 17px;
-  padding: 0 4px;
+  top: 3px;
+  right: 1px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
   border-radius: 999px;
   background: var(--vx-accent);
   color: #fff;
   font-size: 0.65rem;
   font-weight: 600;
-  line-height: 17px;
+  line-height: 18px;
   text-align: center;
+  box-shadow: 0 0 0 2px var(--vx-bg);
 }
 
 /* ---------- Search ---------- */
-
 .vx-search {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   padding: 0;
   border-radius: 999px;
-
-  transition:
-    max-height 0.3s ease,
-    opacity 0.3s ease,
-    padding 0.3s ease;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
 }
 
 .vx-search.show {
+  max-width: 720px;
+  margin: 0 auto 14px;
   max-height: 80px;
   opacity: 1;
   padding: 2px;
-  margin-bottom: 12px;
-
-background: linear-gradient(
-  90deg,
-  #0f766e,
-  #a8dcd3,
-  #e0f5ef,
-  #a8dcd3,
-  #0f766e
-);
-background-size: 200% 100%;
-
+  background: linear-gradient(90deg, #0f766e, #a8dcd3, #e0f5ef, #a8dcd3, #0f766e);
+  background-size: 200% 100%;
   animation: vx-search-border 2.5s linear infinite;
 }
 
@@ -162,20 +211,14 @@ background-size: 200% 100%;
   width: 100%;
   border: none;
   border-radius: 999px;
-  padding: 10px 18px;
-
+  padding: 11px 22px;
   background: #fffdf9;
   color: var(--vx-ink);
   font-size: 0.95rem;
-
   outline: none;
   box-shadow: none;
 }
-
-.vx-search-input::placeholder {
-  color: var(--vx-muted);
-}
-
+.vx-search-input::placeholder { color: var(--vx-muted); }
 .vx-search-input:focus {
   background: #fffdf9;
   outline: none;
@@ -183,36 +226,42 @@ background-size: 200% 100%;
 }
 
 @keyframes vx-search-border {
-  from {
-    background-position: 0% 50%;
-  }
-  to {
-    background-position: 200% 50%;
-  }
+  from { background-position: 0% 50%; }
+  to   { background-position: 200% 50%; }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .vx-search.show {
-    animation: none;
-  }
-}
-
 
 /* ---------- Desktop nav ---------- */
 .vx-desktop-nav {
-  border-top: 1px solid var(--vx-line);
-  padding: 18px 0 20px;
+  position: relative;
+  padding: 18px 0 22px;
+  transition: padding 0.35s ease;
 }
+
+/* divider that fades out at both ends */
+.vx-desktop-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--vx-line) 12%, var(--vx-line) 88%, transparent);
+}
+
+.vx-desktop-nav ul { gap: clamp(2rem, 5vw, 4.5rem) !important; }
 
 .vx-link {
   position: relative;
-  padding: 4px 0;
+  padding: 6px 0;
   color: var(--vx-ink);
   text-decoration: none;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  transition: color 0.25s ease;
 }
+/* underline grows from the centre */
 .vx-link::after {
   content: "";
   position: absolute;
@@ -220,12 +269,12 @@ background-size: 200% 100%;
   bottom: -2px;
   width: 100%;
   height: 1.5px;
-  background: var(--vx-accent);
+  background: linear-gradient(90deg, var(--vx-accent), var(--vx-gold));
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.2, 1);
 }
-.vx-link:hover { color: var(--vx-ink); }
+.vx-link:hover { color: var(--vx-accent); }
 .vx-link:hover::after,
 .vx-link:focus-visible::after { transform: scaleX(1); }
 
@@ -235,7 +284,8 @@ background-size: 200% 100%;
   inset: 0;
   z-index: 1040;
   background: rgba(30, 24, 18, 0.45);
-  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -251,33 +301,34 @@ background-size: 200% 100%;
   left: 0;
   bottom: 0;
   z-index: 1050;
-  width: min(86vw, 340px);
+  width: min(86vw, 360px);
   display: flex;
   flex-direction: column;
-  padding: 22px 26px 28px;
+  padding: 24px 28px 30px;
   background: var(--vx-bg);
   font-family: "Jost", "Segoe UI", system-ui, sans-serif;
   color: var(--vx-ink);
   transform: translateX(-100%);
-  transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.2, 1);
+  transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.2, 1);
   border-radius: 0 var(--vx-radius) var(--vx-radius) 0;
+  box-shadow: 20px 0 50px rgba(30, 20, 10, 0.18);
 }
 .vx-drawer.show { transform: translateX(0); }
 
 .vx-drawer-head {
-  padding-bottom: 18px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--vx-line);
 }
 
 .vx-drawer-links {
-  margin: 18px 0 0;
+  margin: 14px 0 0;
   padding: 0;
   flex: 1;
 }
 .vx-drawer-links li {
   opacity: 0;
-  transform: translateX(-14px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: translateX(-16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 .vx-drawer.show .vx-drawer-links li {
   opacity: 1;
@@ -285,17 +336,17 @@ background-size: 200% 100%;
 }
 .vx-drawer-links a {
   display: block;
-  padding: 14px 0;
+  padding: 16px 0;
   border-bottom: 1px solid var(--vx-line);
   color: var(--vx-ink);
   text-decoration: none;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 300;
-  letter-spacing: 0.04em;
-  transition: padding-left 0.2s ease, color 0.2s ease;
+  letter-spacing: 0.06em;
+  transition: padding-left 0.25s ease, color 0.25s ease;
 }
 .vx-drawer-links a:hover {
-  padding-left: 8px;
+  padding-left: 10px;
   color: var(--vx-accent);
 }
 
@@ -308,27 +359,41 @@ background-size: 200% 100%;
   color: var(--vx-muted);
   text-decoration: none;
 }
-.vx-drawer-foot a:hover { color: var(--vx-ink); }
+.vx-drawer-foot a:hover { color: var(--vx-accent); }
 
-/* ---------- Focus + motion ---------- */
+/* ---------- Focus ---------- */
 .vx-menu-btn:focus-visible,
 .vx-icon-btn:focus-visible,
 .vx-link:focus-visible,
+.vx-logo:focus-visible,
 .vx-drawer a:focus-visible {
   outline: 2px solid var(--vx-accent);
   outline-offset: 3px;
 }
 
+/* ---------- Responsive ---------- */
+@media (max-width: 991.98px) {
+  .vx-card { padding-top: 14px; }
+  .vx-top { padding-bottom: 14px; }
+}
+
 @media (max-width: 575.98px) {
-  .vx-card { padding: 12px 14px 0; border-radius: 14px; }
-  .vx-header { padding: 8px 0; }
-  .vx-icon-btn { width: 36px; height: 36px; }
+  .vx-card { padding: 10px 14px 0; }
+  .vx-top { padding-bottom: 10px; }
+  .vx-icon-btn { width: 38px; height: 38px; }
+  .vx-logo-sub::before,
+  .vx-logo-sub::after { width: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .vx-search.show { animation: none; }
+  .vx-header,
+  .vx-card,
+  .vx-top,
   .vx-drawer,
   .vx-backdrop,
   .vx-search,
   .vx-drawer-links li,
+  .vx-logo-main,
   .vx-link::after { transition: none; }
 }
