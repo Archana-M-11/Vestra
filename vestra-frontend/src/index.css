@@ -1,0 +1,38 @@
+:root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  --vx-bg: #f5f0e8;
+  --vx-ink: #23211e;
+  --vx-muted: #7a7468;
+  --vx-line: #dcd6c6;
+  --vx-accent: #8a5a44;
+  --vx-radius: 18px;
+
+  --vx-white: #ffffff;
+  --vx-dark: #1e1e1c;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding :0;
+  background: var(--vx-bg);
+  color: var(--vx-ink);
+  font-family: "Jost", "Segoe UI", sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}

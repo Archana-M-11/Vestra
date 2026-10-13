@@ -1,0 +1,145 @@
+.vh-hero {
+  --vh-bg: #f3f0e6;
+  --vh-ink: #23211e;
+  --vh-muted: #6f695d;
+  --vh-gold: #b8964f;
+
+  background: var(--vh-bg);
+  color: var(--vh-ink);
+  font-family: "Jost", "Segoe UI", system-ui, sans-serif;
+  padding: 48px 0 72px;
+  overflow: hidden;
+}
+
+.vh-row {
+  min-height: calc(100vh - 160px);
+}
+
+/* ---------- Copy ---------- */
+.vh-copy {
+  text-align: center;
+}
+
+.vh-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(3.6rem, 11vw, 7.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  animation: vh-rise 0.9s cubic-bezier(0.22, 0.8, 0.2, 1) both;
+}
+
+.vh-subtitle {
+  margin: 14px 0 0;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--vh-gold);
+  padding-left: 0.32em;
+  animation: vh-rise 0.9s 0.12s cubic-bezier(0.22, 0.8, 0.2, 1) both;
+}
+
+.vh-text {
+  max-width: 30rem;
+  margin: 28px auto 36px;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--vh-muted);
+  animation: vh-rise 0.9s 0.24s cubic-bezier(0.22, 0.8, 0.2, 1) both;
+}
+
+/* ---------- Button ---------- */
+.vh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 34px;
+  border-radius: 999px;
+  background: var(--vh-ink);
+  color: #f7f3ea;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  animation: vh-rise 0.9s 0.36s cubic-bezier(0.22, 0.8, 0.2, 1) both;
+}
+.vh-btn svg {
+  transition: transform 0.25s ease;
+}
+.vh-btn:hover {
+  background: #3a3631;
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(35, 33, 30, 0.22);
+  transform: translateY(-2px);
+}
+.vh-btn:hover svg {
+  transform: translateX(4px);
+}
+.vh-btn:focus-visible {
+  outline: 2px solid var(--vh-gold);
+  outline-offset: 4px;
+}
+
+/* ---------- Image ---------- */
+.vh-media {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto;
+  animation: vh-fade 1.2s 0.1s ease both;
+}
+
+/* offset gold frame behind the photo */
+.vh-media::before {
+  content: "";
+  position: absolute;
+  inset: 22px -22px -22px 22px;
+  border: 1.5px solid var(--vh-gold);
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.vh-img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 8;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(60, 45, 30, 0.18);
+}
+
+/* ---------- Animation (page load only) ---------- */
+@keyframes vh-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes vh-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 992px) {
+  .vh-hero { padding: 64px 0 96px; }
+  .vh-copy { text-align: left; }
+  .vh-subtitle { padding-left: 0; }
+  .vh-text { margin-left: 0; margin-right: 0; }
+}
+
+/* ---------- Small phones ---------- */
+@media (max-width: 575.98px) {
+  .vh-hero { padding: 28px 0 56px; }
+  .vh-row { min-height: auto; }
+  .vh-media::before { inset: 14px -10px -14px 10px; }
+  .vh-btn { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vh-title, .vh-subtitle, .vh-text, .vh-btn, .vh-media { animation: none; }
+  .vh-btn, .vh-btn svg { transition: none; }
+}

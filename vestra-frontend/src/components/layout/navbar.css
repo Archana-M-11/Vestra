@@ -1,0 +1,334 @@
+/* ---------- Header shell ---------- */
+.vx-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--vx-bg);
+}
+
+.vx-card {
+  width: 100%;
+  margin: 0;
+  padding: 16px 0 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.vx-header.is-scrolled .vx-card {
+  box-shadow: 0 10px 30px rgba(60, 45, 30, 0.12);
+}
+
+.vx-top {
+  padding-bottom: 9px;
+}
+
+.vx-header > .container-fluid {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* ---------- Menu button ---------- */
+.vx-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: 0;
+  padding: 8px 4px;
+  color: var(--vx-ink);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.vx-burger {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 20px;
+}
+.vx-burger i {
+  display: block;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+.vx-burger i:last-child { width: 60%; }
+.vx-menu-btn:hover .vx-burger i:last-child { width: 100%; }
+
+/* ---------- Logo ---------- */
+.vx-logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  color: var(--vx-ink);
+}
+.vx-logo-main {
+  font-size: clamp(1.4rem, 4.5vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+}
+.vx-logo-sub {
+  margin-top: 6px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--vx-muted);
+  padding-left: 0.38em; /* balances trailing letter-spacing */
+}
+
+/* ---------- Icon buttons ---------- */
+.vx-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--vx-ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.vx-icon-btn:hover {
+  background: rgba(35, 33, 30, 0.07);
+  color: var(--vx-ink);
+}
+.vx-icon-btn:active { transform: scale(0.94); }
+
+.vx-badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--vx-accent);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 17px;
+  text-align: center;
+}
+
+/* ---------- Search ---------- */
+
+.vx-search {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+  border-radius: 999px;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease,
+    padding 0.3s ease;
+}
+
+.vx-search.show {
+  max-height: 80px;
+  opacity: 1;
+  padding: 2px;
+  margin-bottom: 12px;
+
+background: linear-gradient(
+  90deg,
+  #0f766e,
+  #a8dcd3,
+  #e0f5ef,
+  #a8dcd3,
+  #0f766e
+);
+background-size: 200% 100%;
+
+  animation: vx-search-border 2.5s linear infinite;
+}
+
+.vx-search-input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+
+  background: #fffdf9;
+  color: var(--vx-ink);
+  font-size: 0.95rem;
+
+  outline: none;
+  box-shadow: none;
+}
+
+.vx-search-input::placeholder {
+  color: var(--vx-muted);
+}
+
+.vx-search-input:focus {
+  background: #fffdf9;
+  outline: none;
+  box-shadow: none;
+}
+
+@keyframes vx-search-border {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vx-search.show {
+    animation: none;
+  }
+}
+
+
+/* ---------- Desktop nav ---------- */
+.vx-desktop-nav {
+  border-top: 1px solid var(--vx-line);
+  padding: 18px 0 20px;
+}
+
+.vx-link {
+  position: relative;
+  padding: 4px 0;
+  color: var(--vx-ink);
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.vx-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background: var(--vx-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.vx-link:hover { color: var(--vx-ink); }
+.vx-link:hover::after,
+.vx-link:focus-visible::after { transform: scaleX(1); }
+
+/* ---------- Mobile drawer ---------- */
+.vx-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1040;
+  background: rgba(30, 24, 18, 0.45);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.vx-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.vx-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1050;
+  width: min(86vw, 340px);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 26px 28px;
+  background: var(--vx-bg);
+  font-family: "Jost", "Segoe UI", system-ui, sans-serif;
+  color: var(--vx-ink);
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.2, 1);
+  border-radius: 0 var(--vx-radius) var(--vx-radius) 0;
+}
+.vx-drawer.show { transform: translateX(0); }
+
+.vx-drawer-head {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--vx-line);
+}
+
+.vx-drawer-links {
+  margin: 18px 0 0;
+  padding: 0;
+  flex: 1;
+}
+.vx-drawer-links li {
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.vx-drawer.show .vx-drawer-links li {
+  opacity: 1;
+  transform: none;
+}
+.vx-drawer-links a {
+  display: block;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--vx-line);
+  color: var(--vx-ink);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  transition: padding-left 0.2s ease, color 0.2s ease;
+}
+.vx-drawer-links a:hover {
+  padding-left: 8px;
+  color: var(--vx-accent);
+}
+
+.vx-drawer-foot {
+  display: flex;
+  gap: 24px;
+  font-size: 0.9rem;
+}
+.vx-drawer-foot a {
+  color: var(--vx-muted);
+  text-decoration: none;
+}
+.vx-drawer-foot a:hover { color: var(--vx-ink); }
+
+/* ---------- Focus + motion ---------- */
+.vx-menu-btn:focus-visible,
+.vx-icon-btn:focus-visible,
+.vx-link:focus-visible,
+.vx-drawer a:focus-visible {
+  outline: 2px solid var(--vx-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 575.98px) {
+  .vx-card { padding: 12px 14px 0; border-radius: 14px; }
+  .vx-header { padding: 8px 0; }
+  .vx-icon-btn { width: 36px; height: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vx-drawer,
+  .vx-backdrop,
+  .vx-search,
+  .vx-drawer-links li,
+  .vx-link::after { transition: none; }
+}
