@@ -5,8 +5,8 @@ import {
   useState,
   useTransition,
 } from "react";
-import ProductCard from "../components/ProductCard";
-import "./Products.css";
+import ProductCard from "../../components/products/ProductCard";
+import "./products.css";
 
 /* ---------- Sample data: replace image / hoverImage with your own files ---------- */
 const PRODUCTS = [

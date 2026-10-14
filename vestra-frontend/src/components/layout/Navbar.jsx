@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 const LINKS = [
-  { label: "New Arrivals", href: "#new" },
-  { label: "Clothing", href: "#clothing" },
-  { label: "Shoes", href: "#shoes" },
-  { label: "Accessories", href: "#accessories" },
+  { label: "New Arrivals", to: "/shop?sort=newest" },
+  { label: "Clothing", to: "/shop" },
+  { label: "Shoes", to: "/shop?category=Shoes" },
+  { label: "Accessories", to: "/shop?category=Accessories" },
 ];
 
 const SearchIcon = () => (
@@ -119,7 +120,9 @@ export default function Navbar({ cartCount = 0 }) {
               <ul className="list-unstyled d-flex justify-content-center gap-5 mb-0">
                 {LINKS.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href} className="vx-link">{l.label}</a>
+                    <Link to={l.to} className="vx-link">
+                      {l.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -146,7 +149,9 @@ export default function Navbar({ cartCount = 0 }) {
         <ul className="list-unstyled vx-drawer-links">
           {LINKS.map((l, i) => (
             <li key={l.label} style={{ transitionDelay: `${open ? 80 + i * 60 : 0}ms` }}>
-              <a href={l.href} onClick={() => setOpen(false)}>{l.label}</a>
+              <Link to={l.to} onClick={() => setOpen(false)}>
+                {l.label}
+              </Link>
             </li>
           ))}
         </ul>
