@@ -1,0 +1,172 @@
+.vp-card {
+  --vp-ink: #23211e;
+  --vp-muted: #7a7468;
+  --vp-gold: #b8964f;
+  --vp-accent: #8a5a44;
+  --vp-media: #ece5d6;
+
+  font-family: "Jost", "Segoe UI", system-ui, sans-serif;
+  color: var(--vp-ink);
+  animation: vp-rise 0.6s calc(var(--i, 0) * 45ms) cubic-bezier(0.22, 0.8, 0.2, 1) both;
+}
+
+@keyframes vp-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Image area ---------- */
+.vp-media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--vp-media);
+  border-radius: 4px;
+}
+
+.vp-media-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.vp-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.22, 0.8, 0.2, 1);
+}
+.vp-img--hover { opacity: 0; }
+.vp-card:hover .vp-img--hover { opacity: 1; }
+.vp-card:hover .vp-img--main { transform: scale(1.04); }
+.vp-card:hover .vp-img--hover { transform: scale(1.04); }
+
+.vp-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--tone, #d9cfbb) 70%, #fff), var(--tone, #d9cfbb));
+  color: rgba(35, 33, 30, 0.35);
+  transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.2, 1);
+}
+.vp-card:hover .vp-placeholder { transform: scale(1.04); }
+
+/* "View item" bar slides up on hover (always visible on touch) */
+.vp-view {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 13px 0;
+  background: rgba(35, 33, 30, 0.92);
+  color: #f7f3ea;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transform: translateY(calc(100% + 16px));
+  transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.2, 1);
+}
+.vp-card:hover .vp-view,
+.vp-media-link:focus-visible .vp-view { transform: none; }
+
+@media (hover: none) {
+  .vp-view { transform: none; padding: 10px 0; background: rgba(35, 33, 30, 0.8); }
+}
+
+.vp-media-link:focus-visible {
+  outline: 2px solid var(--vp-gold);
+  outline-offset: -4px;
+}
+
+/* ---------- Badge + heart ---------- */
+.vp-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #fffdf9;
+  color: var(--vp-ink);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.vp-badge.is-sale { background: var(--vp-accent); color: #fff; }
+
+.vp-heart {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 253, 249, 0.85);
+  color: var(--vp-ink);
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+.vp-heart:hover { transform: scale(1.1); background: #fff; }
+.vp-heart:active { transform: scale(0.92); }
+.vp-heart.is-on { color: var(--vp-accent); }
+.vp-heart:focus-visible { outline: 2px solid var(--vp-gold); outline-offset: 2px; }
+
+/* ---------- Info row ---------- */
+.vp-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 2px 0;
+  color: inherit;
+  text-decoration: none;
+}
+.vp-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.vp-brand {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.vp-name {
+  font-size: 0.88rem;
+  color: var(--vp-muted);
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+.vp-info:hover .vp-name { color: var(--vp-accent); }
+
+.vp-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: none;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.vp-price strong { font-weight: 500; }
+.vp-price s { font-size: 0.78rem; color: var(--vp-muted); }
+
+@media (max-width: 575.98px) {
+  .vp-info { flex-direction: column; gap: 6px; }
+  .vp-price { flex-direction: row; align-items: baseline; gap: 8px; }
+  .vp-heart { width: 34px; height: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-card { animation: none; }
+  .vp-img, .vp-view, .vp-placeholder { transition: none; }
+}

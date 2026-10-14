@@ -1,5 +1,5 @@
 import { useActionState, useEffect, useId, useState } from "react";
-import "./Footer.css";
+import "./footer.css";
 
 const SHOP = [
   { label: "New Arrivals", href: "#new" },

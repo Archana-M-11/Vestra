@@ -1,4 +1,4 @@
-import "./Hero.css";
+import "./hero.css";
 import heroImage from "../../assets/images/hero-image.jpg"; // put hero-image.jpg in src/assets/
 
 export default function Hero() {
