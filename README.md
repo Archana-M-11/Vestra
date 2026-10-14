@@ -1,8 +1,10 @@
 # Vestra — AI-Powered Fashion Marketplace
 
-Vestra is a multi-vendor fashion marketplace that connects customers with independent fashion vendors through a unified shopping platform. It features **Vee**, an AI assistant that provides personalized styling recommendations, real-time product information, and vendor business insights.
+Vestra is an AI-powered fashion marketplace that brings together curated fashion collections, personalized shopping, and intelligent product discovery in one unified platform. It features **Vee**, an AI fashion stylist that provides personalized outfit recommendations, real-time product information, and shopping assistance.
 
 The platform combines modern e-commerce functionality with **Retrieval-Augmented Generation (RAG)** and **function calling** to deliver context-aware assistance grounded in relevant knowledge and live application data.
+
+Product listings, inventory, pricing, categories, and featured collections are managed centrally through an administrator dashboard, while customers can browse products, manage their carts, and place orders.
 
 **Project Status:** In Development
 
@@ -31,54 +33,37 @@ The AI layer combines knowledge retrieval with authorized backend tools to suppo
 ---
 
 ## Features
-
 ### Marketplace
 
-- **Multi-Vendor Catalog:** Browse products from independent fashion vendors.
-- **Product Management:** Manage product listings, inventory, search, filtering, and pagination.
-- **Shopping Cart:** Manage selected products before checkout.
-- **Order Management:** Support order placement, tracking, and purchase history.
+- **Curated Product Catalog:** Browse fashion products across clothing, shoes, and accessories.
+- **Product Management:** Admin-managed product listings, inventory, search, filtering, and pagination.
+- **Shopping Cart:** Add products, update quantities, and manage selected items before checkout.
+- **Order Management:** Place orders, track order status, and view purchase history.
 - **Payment Integration:** Stripe Checkout integration planned for test-mode payment flows.
-- **Role-Based Access Control:** Separate permissions and experiences for customers, vendors, and administrators.
+- **Role-Based Access Control:** Separate customer and administrator permissions.
 
-### AI-Powered Capabilities
+### Admin Dashboard
 
-- **Personalized Recommendations:** Assist customers with outfit ideas and product discovery.
-- **Contextual Knowledge Retrieval:** Retrieve relevant information from product descriptions, FAQs, fashion guides, and platform policies.
-- **Live Product Insights:** Access current prices and stock information through backend tools.
-- **Vendor Assistance:** Support product description generation and business performance queries.
-- **Persistent Conversations:** Retain chat history across sessions, with options to start a new conversation or clear existing history.
-
----
-
-## AI Assistant — Vee
-
-Vee is Vestra's AI assistant, built around a shared AI engine with role-specific behavior and access permissions.
-
-### Customer Assistant — Vee the Stylist
-
-- Personalized fashion and outfit recommendations.
-- Product discovery based on customer preferences.
-- Real-time product price and availability checks.
-- Shopping assistance and authorized cart operations.
-- Answers to shipping, returns, and platform policy questions.
-
-### Vendor Assistant — Vee the Copilot
-
-- Sales and product performance insights.
-- AI-assisted product description generation.
-- Vendor guidance and platform policy assistance.
-- Vendor-specific business queries using authorized backend tools.
+- Add, edit, and remove products.
+- Manage product images, categories, sizes, colours, prices, and stock.
+- Manage orders and customer accounts.
+- Control featured products, new arrivals, and homepage collections.
+- View sales and inventory insights.
 
 ### AI Implementation
 
 Vee combines two complementary techniques:
 
-- **Retrieval-Augmented Generation (RAG):** Retrieves relevant information from a knowledge base to provide context-aware responses.
-- **Function Calling:** Invokes defined backend tools to retrieve current application data and perform permitted operations.
+- **Retrieval-Augmented Generation (RAG):** Retrieves relevant information from product descriptions, fashion guides, FAQs, and platform policies.
+- **Function Calling:** Uses authorized backend tools to retrieve current product prices and availability, discover products, and support permitted shopping actions.
 
-Backend authorization and validation govern access to protected resources and actions.
+The backend validates requests and enforces authorization before accessing protected resources or performing actions.
 
+### Conversation Management
+
+- Persistent conversations across sessions.
+- Start a new conversation or clear existing history.
+- Context-aware responses based on relevant conversation history.
 ---
 
 ## Technology Stack
